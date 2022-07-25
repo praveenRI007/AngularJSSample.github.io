@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+
+<body>
+    <center>
+        <h3>Hello ! would you like to fill a form</h3> <input type="checkbox" ng-model="value.myVar1" ng-init="value.myVar1=false">
+        <--- if yes check this box to get the form</center>
+            <div ng-if="value.myVar1">
+                <h1 style="text-align:center ;">Hi iam a form ! please fill me up<br><small>***after filling up please checkout main menu page***</small>
+                </h1>
+                <br>
+                <form style="text-align: left;padding:20px;padding-bottom: 100px;">
+                    <!-- Q1 -->
+                    1. Pick your favourite pet:&nbsp;&nbsp;
+                    <input type="radio" ng-model="value.myVar2" value="Dogs">Dogs
+                    <input type="radio" ng-model="value.myVar2" value="cats">Cats
+                    <div ng-switch="value.myVar2" style="text-align: left;padding-left:20px;">
+                        <div ng-switch-when="Dogs">
+                            <h1>Dogs</h1>
+                            <p>Welcome to a world of Dogs.</p>
+                            <img src="Dogs.png" style="height: 200px;width:300px;">
+                        </div>
+                        <div ng-switch-when="cats">
+                            <h1>Cats</h1>
+                            <p>Welcome to a world of cats.</p>
+                            <img src="cats.jpg" style="height: 200px;width:300px;">
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div ng-if="value.myVar2">
+                        <br> 2. What's your favourite food:
+                        <select ng-init="names=['biriyani','Poori','Pongal','Dosa']" ng-model="value.selectedName" ng-options="x for x in names"></select>
+                        <div ng-if="value.selectedName" style="text-align: left;padding-left:20px;padding-top:10px;">
+                            <img src="{{value.selectedName}}.jpg" style="height: 200px;width:300px;">
+                        </div>
+                    </div>
+                </form>
+            </div>
+</body>
+
+</html>

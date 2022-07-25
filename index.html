@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="content/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="data.json"></script>
+    <script type="text/javascript" src="javascript.js"></script> -->
+</head>
+
+
+
+<body ng-app="myApp">
+    <nav class="navbar navbar-inverse" style="position:fixed;width:100%;top:0px;height:8vh;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a id="sideNav" class="navbar-brand" style="cursor:pointer;">AngularJS</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <!-- <li><a href="#!london">London</a></li>
+                <li><a href="#!paris">Paris</a></li> -->
+                <li><a href="#!form">Form</a></li>
+                <li><a href="#!main">main</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="mySidenav" class="sidenav" style="width:20vw;">
+        <a href="#!Employer">Employer Details</a>
+        <a href="#!Employee">Employee Details</a>
+    </div>
+
+
+
+    <div ng-view style="margin-top:8vh;height:82vh;margin-left:20vw;width:80vw;overflow: auto;"></div>
+    <footer style="background-color:lightgrey;text-align: center;bottom: 0px;position: fixed;width: 100%;height:10vh;">
+        <p>Author: Praveen R<br>
+            <a href="mailto:praveenriemplfizh@gmail.com">praveenriemplfizh@gmail.com</a></p>
+    </footer>
+    <script>
+        // $(document).ready(function() {
+        //     $("#sideNav").click(function() {
+        //         $("#mySidenav").toggle();
+        //     });
+        // });
+        var app = angular.module("myApp", ["ngRoute"]);
+        app.config(function($routeProvider) {
+            $routeProvider
+
+                .when("/london", {
+                    templateUrl: "london.html",
+                    controller: "londonCtrl"
+                })
+                .when("/form", {
+                    templateUrl: "form.html",
+                    controller: "formCtrl"
+                })
+                .when("/paris", {
+                    templateUrl: "paris.html",
+                    controller: "parisCtrl"
+                })
+                .when("/main", {
+                    templateUrl: "main.html",
+                    controller: "mainCtrl"
+                })
+                .when("/Employer", {
+                    templateUrl: "Employer.html",
+                    controller: "EmployerCtrl"
+                })
+                .when("/Employee", {
+                    templateUrl: "Employee.html",
+                    controller: "EmployeeCtrl"
+                });
+
+
+        });
+        app.controller("formCtrl", function($scope) {
+            $scope.msg = "Iam a form";
+        });
+        app.controller("londonCtrl", function($scope) {
+            $scope.msg = "I love London";
+        });
+        app.controller("parisCtrl", function($scope) {
+            $scope.msg = "I love Paris";
+        });
+        app.controller("mainCtrl", function($scope) {
+            $scope.msg = " ";
+        });
+        app.controller("EmployerCtrl", function($scope) {
+            $scope.msg = " ";
+        });
+        app.controller("EmployeeCtrl", function($scope) {
+            $scope.msg = " ";
+        });
+
+
+
+
+        app.factory('Fact', function() {
+            return {
+                name: '',
+                Con: 'ImCon'
+            };
+        });
+
+        app.controller('formCtrl',
+            function($scope, Fact) {
+                $scope.value = Fact;
+            });
+
+        app.controller('mainCtrl',
+            function($scope, Fact) {
+                $scope.value = Fact;
+            });
+    </script>
+
+</body>
+
+</html>
