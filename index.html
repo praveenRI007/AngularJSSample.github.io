@@ -73,6 +73,9 @@
                 .when("/Employee", {
                     templateUrl: "Employee.html",
                     controller: "EmployeeCtrl"
+                })
+                .otherwise({
+                    redirectTo: "/main"
                 });
 
 
@@ -115,6 +118,53 @@
             function($scope, Fact) {
                 $scope.value = Fact;
             });
+
+
+
+        function importFile() {
+            var importedFile = document.getElementById('import-file').files[0];
+
+            var reader = new FileReader();
+            reader.onload = function() {
+                var fileContent = JSON.parse(reader.result);
+                var Dat = '';
+
+                // ITERATING THROUGH OBJECTS
+                $.each(fileContent, function(key, value) {
+
+                    //CONSTRUCTION OF ROWS HAVING
+                    // DATA FROM JSON OBJECT
+                    Dat += '<tr>';
+                    Dat += '<td>' +
+                        value.Firstname + '</td>';
+
+                    Dat += '<td>' +
+                        value.Lastname + '</td>';
+
+                    Dat += '<td>' +
+                        value.Email + '</td>';
+                    Dat += '<td>' +
+                        value.Gender + '</td>';
+
+                    Dat += '</tr>';
+                });
+
+                $('#employee td').remove();
+                $('#employee').append('<tbody>');
+                $('#employee').append(Dat);
+                $('#employee').append('</tbody');
+
+                $('#employer td').remove();
+                $('#employer').append('<tbody>');
+                $('#employer').append(Dat);
+                $('#employer').append('</tbody');
+
+
+                // Do something with fileContent
+                // document.getElementById('json-file').innerHTML = fileContent;  
+            };
+            reader.readAsText(importedFile);
+        }
     </script>
 
 </body>
